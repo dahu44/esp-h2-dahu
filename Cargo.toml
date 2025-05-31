@@ -4,13 +4,20 @@ name    = "esp-h2-dahu"
 version = "0.1.0"
 
 [[bin]]
-name = "esp-h2-dahu"
+name = "dahu-first-esp32h2-project"
 path = "./src/bin/main.rs"
 
 [dependencies]
 critical-section = "1.2.0"
-esp-hal          = { version = "0.23.1", features = ["esp32h2"] }
-esp-backtrace = { version = "0.15.1", features = ["println", "panic-handler", "exception-handler"] }
+esp-backtrace = { version = "0.15.0", features = [
+  "esp32h2",
+  "exception-handler",
+  "panic-handler",
+  "println",
+] }
+esp-hal = { version = "0.23.1", features = ["esp32h2", "unstable"] }
+esp-println = { version = "0.13.0", features = ["esp32h2", "log"] }
+log = { version = "0.4.21" }
 
 [profile.dev]
 # Rust debug is too slow.
@@ -25,3 +32,5 @@ incremental      = false
 lto              = 'fat'
 opt-level        = 's'
 overflow-checks  = false
+
+
