@@ -34,6 +34,20 @@ espup install
 sudo usermod -a -G dialout $USER
 cargo run --release
 
+## Test bonjour le monde
+for inspiration have a look at the examples at 
+https://github.com/esp-rs/esp-hal/tree/v0.23.1/examples/src/bin
 
-  git config --global user.email "emmanuel.grandiere@laposte.net"
-  git config --global user.name "dahu44"
+## plate-forme de test
+ESP32-H2-DevKitM-1
+
+https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32h2/esp32-h2-devkitm-1/user_guide.html
+
+cargo clean
+cargo build
+cargo run
+cargo espflash flash --example=panic --monitor
+cargo espflash flash --example=blinky --monitor
+cargo espflash flash --example=button-interrupt --monitor
+
+

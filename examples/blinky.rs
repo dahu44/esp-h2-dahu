@@ -1,0 +1,32 @@
+#![no_std]
+#![no_main]
+
+use esp_backtrace as _;
+use esp_hal::{
+    delay::Delay,
+    gpio::{Level, Output},
+    main,
+};
+use esp_println::println;
+
+#[main]
+fn main() -> ! {
+    let peripherals = esp_hal::init(esp_hal::Config::default());
+
+    println!("Blink LED sur port GPIO4!");
+   
+    // Set GPIO7 as an output, and set its state high initially.
+    let mut led = Output::new(peripherals.GPIO4, Level::Low);
+   
+    led.set_low();
+   
+    // Initialize the Delay peripheral, and use it to toggle the LED state in a
+    // loop.
+    let delay = Delay::new();
+   
+    loop {
+        led.toggle();
+        delay.delay_millis(500);
+    }
+}
+
